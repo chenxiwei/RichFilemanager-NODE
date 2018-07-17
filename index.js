@@ -15,7 +15,7 @@ const paths = require('path');
 const multer = require('multer');
 paths.posix = require('path-posix');
 
-const router = express.Router(); // eslint-disable-line
+var router; // eslint-disable-line
 const upload = multer({dest: 'public/'});
 
 module.exports = (__appRoot, configPath) => { // eslint-disable-line max-statements
@@ -26,7 +26,7 @@ module.exports = (__appRoot, configPath) => { // eslint-disable-line max-stateme
 	else if( typeof( configPath ) == "object"  ){
 		config = configPath;
 	}
-
+        router = express.Router();
 	// finally, our main route handling that calls the above functions :)
 	router.get('/', (req, res) => { // eslint-disable-line complexity
 		const mode = req.query.mode;
